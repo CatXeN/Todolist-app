@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "G:\\Fork\\Todolist-app\\src\\TodolistAppAPI\\TodolistAppAPI\\TodolistAppAPI.csproj": {}
+    "C:\\Users\\catxe\\source\\repos\\Todolist-app\\src\\TodolistAppAPI\\TodolistAppAPI\\TodolistAppAPI.csproj": {}
   },
   "projects": {
-    "G:\\Fork\\Todolist-app\\src\\TodolistAppAPI\\TodolistAppAPI\\TodolistAppAPI.csproj": {
+    "C:\\Users\\catxe\\source\\repos\\Todolist-app\\src\\TodolistAppAPI\\TodolistAppAPI\\TodolistAppAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "G:\\Fork\\Todolist-app\\src\\TodolistAppAPI\\TodolistAppAPI\\TodolistAppAPI.csproj",
+        "projectUniqueName": "C:\\Users\\catxe\\source\\repos\\Todolist-app\\src\\TodolistAppAPI\\TodolistAppAPI\\TodolistAppAPI.csproj",
         "projectName": "TodolistAppAPI",
-        "projectPath": "G:\\Fork\\Todolist-app\\src\\TodolistAppAPI\\TodolistAppAPI\\TodolistAppAPI.csproj",
-        "packagesPath": "C:\\Users\\Hubert\\.nuget\\packages\\",
-        "outputPath": "G:\\Fork\\Todolist-app\\src\\TodolistAppAPI\\TodolistAppAPI\\obj\\",
+        "projectPath": "C:\\Users\\catxe\\source\\repos\\Todolist-app\\src\\TodolistAppAPI\\TodolistAppAPI\\TodolistAppAPI.csproj",
+        "packagesPath": "C:\\Users\\catxe\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\catxe\\source\\repos\\Todolist-app\\src\\TodolistAppAPI\\TodolistAppAPI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Hubert\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\catxe\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -22,14 +22,15 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {}
+          "https://api.nuget.org/v3/index.json": {},
+          "https://macmilan.pkgs.visualstudio.com/Zdajesz/_packaging/zdajesznugets/nuget/v3/index.json": {}
         },
         "frameworks": {
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "G:\\Fork\\Todolist-app\\src\\TodolistAppModels\\TodolistAppModels.csproj": {
-                "projectPath": "G:\\Fork\\Todolist-app\\src\\TodolistAppModels\\TodolistAppModels.csproj"
+              "C:\\Users\\catxe\\source\\repos\\Todolist-app\\src\\TodolistAppModels\\TodolistAppModels.csproj": {
+                "projectPath": "C:\\Users\\catxe\\source\\repos\\Todolist-app\\src\\TodolistAppModels\\TodolistAppModels.csproj"
               }
             }
           }
@@ -79,8 +80,7 @@
             "net47",
             "net471",
             "net472",
-            "net48",
-            "net481"
+            "net48"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -92,21 +92,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.200\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "G:\\Fork\\Todolist-app\\src\\TodolistAppModels\\TodolistAppModels.csproj": {
+    "C:\\Users\\catxe\\source\\repos\\Todolist-app\\src\\TodolistAppModels\\TodolistAppModels.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "G:\\Fork\\Todolist-app\\src\\TodolistAppModels\\TodolistAppModels.csproj",
+        "projectUniqueName": "C:\\Users\\catxe\\source\\repos\\Todolist-app\\src\\TodolistAppModels\\TodolistAppModels.csproj",
         "projectName": "TodolistAppModels",
-        "projectPath": "G:\\Fork\\Todolist-app\\src\\TodolistAppModels\\TodolistAppModels.csproj",
-        "packagesPath": "C:\\Users\\Hubert\\.nuget\\packages\\",
-        "outputPath": "G:\\Fork\\Todolist-app\\src\\TodolistAppModels\\obj\\",
+        "projectPath": "C:\\Users\\catxe\\source\\repos\\Todolist-app\\src\\TodolistAppModels\\TodolistAppModels.csproj",
+        "packagesPath": "C:\\Users\\catxe\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\catxe\\source\\repos\\Todolist-app\\src\\TodolistAppModels\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Hubert\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\catxe\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -114,7 +114,8 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {}
+          "https://api.nuget.org/v3/index.json": {},
+          "https://macmilan.pkgs.visualstudio.com/Zdajesz/_packaging/zdajesznugets/nuget/v3/index.json": {}
         },
         "frameworks": {
           "net6.0": {
@@ -137,8 +138,7 @@
             "net47",
             "net471",
             "net472",
-            "net48",
-            "net481"
+            "net48"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -147,7 +147,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.200\\RuntimeIdentifierGraph.json"
         }
       }
     }
