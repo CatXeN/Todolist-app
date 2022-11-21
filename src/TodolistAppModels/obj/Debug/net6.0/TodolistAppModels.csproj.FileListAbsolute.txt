@@ -1,0 +1,12 @@
+G:\Fork\Todolist-app\src\TodolistAppModels\bin\Debug\net6.0\TodolistAppModels.deps.json
+G:\Fork\Todolist-app\src\TodolistAppModels\bin\Debug\net6.0\TodolistAppModels.dll
+G:\Fork\Todolist-app\src\TodolistAppModels\bin\Debug\net6.0\TodolistAppModels.pdb
+G:\Fork\Todolist-app\src\TodolistAppModels\obj\Debug\net6.0\TodolistAppModels.csproj.AssemblyReference.cache
+G:\Fork\Todolist-app\src\TodolistAppModels\obj\Debug\net6.0\TodolistAppModels.GeneratedMSBuildEditorConfig.editorconfig
+G:\Fork\Todolist-app\src\TodolistAppModels\obj\Debug\net6.0\TodolistAppModels.AssemblyInfoInputs.cache
+G:\Fork\Todolist-app\src\TodolistAppModels\obj\Debug\net6.0\TodolistAppModels.AssemblyInfo.cs
+G:\Fork\Todolist-app\src\TodolistAppModels\obj\Debug\net6.0\TodolistAppModels.csproj.CoreCompileInputs.cache
+G:\Fork\Todolist-app\src\TodolistAppModels\obj\Debug\net6.0\TodolistAppModels.dll
+G:\Fork\Todolist-app\src\TodolistAppModels\obj\Debug\net6.0\refint\TodolistAppModels.dll
+G:\Fork\Todolist-app\src\TodolistAppModels\obj\Debug\net6.0\TodolistAppModels.pdb
+G:\Fork\Todolist-app\src\TodolistAppModels\obj\Debug\net6.0\ref\TodolistAppModels.dll
