@@ -1,4 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using TodolistAppModels.Entities;
+using Task = TodolistAppModels.Entities.Task;
 
 namespace TodolistAppAPI.Data
 {
@@ -6,6 +8,10 @@ namespace TodolistAppAPI.Data
     {
         public DataContext(DbContextOptions<DataContext> options) : base(options) { }
 
-        public DbSet<TodolistAppModels.Entities.Task> Tasks { get; set; }   
+        public DbSet<Task> Tasks { get; set; }
+        public DbSet<Board> Boards { get; set; }
+        public DbSet<List> Lists { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<UserToBoard> UsersToBoards { get; set; }
     }
 }

@@ -8,16 +8,17 @@ using System.Threading.Tasks;
 
 namespace TodolistAppModels.Entities
 {
-    public class Task
+    public class List
     {
         [Key]
         public int Id { get; set; }
         public string Name { get; set; }
-        public string Description { get; set; }
-        public DateTime Date { get; set; }
+        public int Order { get; set; }
 
-        [ForeignKey("List")]
-        public int ListId { get; set; }
-        public virtual List List { get; set; }
+        public ICollection<Task> Tasks { get; set; }
+
+        [ForeignKey("Board")]
+        public int BoardId { get; set; }
+        public virtual Board Board { get; set; }
     }
 }
