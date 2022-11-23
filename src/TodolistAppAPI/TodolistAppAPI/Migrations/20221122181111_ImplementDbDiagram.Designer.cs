@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TodolistAppAPI.Data;
 
@@ -11,9 +12,10 @@ using TodolistAppAPI.Data;
 namespace TodolistAppAPI.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20221122181111_ImplementDbDiagram")]
+    partial class ImplementDbDiagram
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -34,9 +36,14 @@ namespace TodolistAppAPI.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("OwnerId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
-                    b.ToTable("Boards");
+                    b.HasIndex("OwnerId");
+
+                    b.ToTable("Board");
                 });
 
             modelBuilder.Entity("TodolistAppModels.Entities.List", b =>
@@ -61,7 +68,7 @@ namespace TodolistAppAPI.Migrations
 
                     b.HasIndex("BoardId");
 
-                    b.ToTable("Lists");
+                    b.ToTable("List");
                 });
 
             modelBuilder.Entity("TodolistAppModels.Entities.Task", b =>
@@ -119,33 +126,18 @@ namespace TodolistAppAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users");
+                    b.ToTable("User");
                 });
 
-            modelBuilder.Entity("TodolistAppModels.Entities.UserToBoard", b =>
+            modelBuilder.Entity("TodolistAppModels.Entities.Board", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                    b.HasOne("TodolistAppModels.Entities.User", "User")
+                        .WithMany()
+                        .HasForeignKey("OwnerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int>("BoardId")
-                        .HasColumnType("int");
-
-                    b.Property<bool>("IsOwner")
-                        .HasColumnType("bit");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("BoardId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("UsersToBoards");
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("TodolistAppModels.Entities.List", b =>
@@ -168,25 +160,6 @@ namespace TodolistAppAPI.Migrations
                         .IsRequired();
 
                     b.Navigation("List");
-                });
-
-            modelBuilder.Entity("TodolistAppModels.Entities.UserToBoard", b =>
-                {
-                    b.HasOne("TodolistAppModels.Entities.Board", "Board")
-                        .WithMany()
-                        .HasForeignKey("BoardId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("TodolistAppModels.Entities.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Board");
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("TodolistAppModels.Entities.List", b =>
