@@ -5,12 +5,25 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace TodolistAppAPI.Migrations
 {
-    public partial class ImplementDbDiagram : Migration
+    public partial class initDB : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "User",
+                name: "Boards",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Boards", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Users",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -22,31 +35,11 @@ namespace TodolistAppAPI.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_User", x => x.Id);
+                    table.PrimaryKey("PK_Users", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Board",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    OwnerId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Board", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Board_User_OwnerId",
-                        column: x => x.OwnerId,
-                        principalTable: "User",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "List",
+                name: "Lists",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -57,11 +50,38 @@ namespace TodolistAppAPI.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_List", x => x.Id);
+                    table.PrimaryKey("PK_Lists", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_List_Board_BoardId",
+                        name: "FK_Lists_Boards_BoardId",
                         column: x => x.BoardId,
-                        principalTable: "Board",
+                        principalTable: "Boards",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "UsersToBoards",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserId = table.Column<int>(type: "int", nullable: false),
+                    BoardId = table.Column<int>(type: "int", nullable: false),
+                    IsOwner = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_UsersToBoards", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_UsersToBoards_Boards_BoardId",
+                        column: x => x.BoardId,
+                        principalTable: "Boards",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_UsersToBoards_Users_UserId",
+                        column: x => x.UserId,
+                        principalTable: "Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -81,27 +101,32 @@ namespace TodolistAppAPI.Migrations
                 {
                     table.PrimaryKey("PK_Tasks", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Tasks_List_ListId",
+                        name: "FK_Tasks_Lists_ListId",
                         column: x => x.ListId,
-                        principalTable: "List",
+                        principalTable: "Lists",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Board_OwnerId",
-                table: "Board",
-                column: "OwnerId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_List_BoardId",
-                table: "List",
+                name: "IX_Lists_BoardId",
+                table: "Lists",
                 column: "BoardId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Tasks_ListId",
                 table: "Tasks",
                 column: "ListId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_UsersToBoards_BoardId",
+                table: "UsersToBoards",
+                column: "BoardId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_UsersToBoards_UserId",
+                table: "UsersToBoards",
+                column: "UserId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -110,13 +135,16 @@ namespace TodolistAppAPI.Migrations
                 name: "Tasks");
 
             migrationBuilder.DropTable(
-                name: "List");
+                name: "UsersToBoards");
 
             migrationBuilder.DropTable(
-                name: "Board");
+                name: "Lists");
 
             migrationBuilder.DropTable(
-                name: "User");
+                name: "Users");
+
+            migrationBuilder.DropTable(
+                name: "Boards");
         }
     }
 }

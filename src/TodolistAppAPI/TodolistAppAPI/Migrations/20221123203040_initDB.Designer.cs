@@ -12,8 +12,8 @@ using TodolistAppAPI.Data;
 namespace TodolistAppAPI.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20221122181717_UserToBoard")]
-    partial class UserToBoard
+    [Migration("20221123203040_initDB")]
+    partial class initDB
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
