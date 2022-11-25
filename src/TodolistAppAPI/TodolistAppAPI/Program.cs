@@ -1,10 +1,15 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.EntityFrameworkCore.Migrations.Internal;
 using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 using TodolistAppAPI.Data;
+using TodolistAppDomain.Identity;
 using TodolistAppDomain.Interfaces;
 using TodolistAppDomain.Repositories;
+using TodolistAppModels.Configs;
 using TodolistAppModels.Entities;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -19,7 +24,45 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
+#region DI Repositories
 builder.Services.AddTransient<IBoardRepository, BoardRepository>();
+#endregion
+
+#region Authentication
+builder.Services.AddTransient<IIdentityService, IdentityService>();
+builder.Services.Configure<TokenConfig>(options => builder.Configuration.GetSection("Token").Bind(options));
+
+var tokenConfigurationSection = builder.Configuration.GetSection("Token");
+var tokenConfig = tokenConfigurationSection.Get<TokenConfig>();
+var key = Encoding.ASCII.GetBytes(tokenConfig.SecurityKey);
+
+builder.Services.AddAuthentication(x =>
+{
+    x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+})
+    .AddJwtBearer(x =>
+    {
+        x.RequireHttpsMetadata = false;
+        x.SaveToken = true;
+        x.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuerSigningKey = true,
+            IssuerSigningKey = new SymmetricSecurityKey(key),
+            ValidateIssuer = false,
+            ValidateAudience = false
+        };
+    });
+
+#endregion
+
+builder.Services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
+{
+    builder.AllowAnyOrigin()
+        .AllowAnyMethod()
+        .AllowAnyHeader();
+}));
 
 var app = builder.Build();
 

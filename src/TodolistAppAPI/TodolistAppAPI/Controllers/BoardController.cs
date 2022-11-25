@@ -1,9 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using TodolistAppDomain.Interfaces;
-using TodolistAppDomain.Repositories;
 using TodolistAppModels.Entities;
-using Task = System.Threading.Tasks.Task;
 
 namespace TodolistAppAPI.Controllers
 {
