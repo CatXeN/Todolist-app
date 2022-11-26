@@ -5,18 +5,18 @@
     <div class="login-panel">
         <h2 class="login-panel__header">Login</h2>
 
-        <form class="login-panel__form">
+        <form class="login-panel__form" [formGroup]="loginForm" (ngSubmit)="login()">
             <div class="input-box">
-                <span>Email adress</span>
+                <span>Username</span>
                 <mat-form-field>
-                  <input type="email" matInput placeholder="name@email.com">
+                  <input formControlName="username" type="text" matInput placeholder="username">
                 </mat-form-field>
             </div>
 
             <div class="input-box">
                 <span>Password</span>
                 <mat-form-field>
-                  <input type="password" matInput placeholder="*******">
+                  <input formControlName="password" type="password" matInput placeholder="*******">
                 </mat-form-field>
             </div>
 

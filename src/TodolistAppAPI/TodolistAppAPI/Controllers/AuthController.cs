@@ -33,7 +33,7 @@ namespace TodolistAppAPI.Controllers
         }
 
         [HttpPost("login")]
-        public async Task<IActionResult> Login(UserInformation userInformation)
+        public async Task<IActionResult> Login(UserLoginInformation userInformation)
         {
             string token;
 
