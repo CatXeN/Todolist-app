@@ -6,12 +6,13 @@ import {
   Router,
 } from '@angular/router';
 import { Observable } from 'rxjs';
-import jwt_decode, { JwtHeader } from 'jwt-decode';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthGuard implements CanActivate {
+  jwtHelper = new JwtHelperService();
   constructor(public router: Router) {}
   
   canActivate(
@@ -20,15 +21,14 @@ export class AuthGuard implements CanActivate {
   ): Observable<boolean> | Promise<boolean> | boolean {
     const token = localStorage.getItem('token');
     if (token) {
-        const jwt: any = jwt_decode(token);
-        const expired = jwt.exp;
+      const decodedToken = this.jwtHelper.decodeToken(token);
 
-        if (Date.now() >= expired * 1000) {
-            this.router.navigate(['']);
-            return false;
-        }
+      if (Date.now() >= decodedToken.exp * 1000) {
+        this.router.navigate(['']);
+        return false;
+      }      
 
-        return true;
+      return true;
     }
 
     this.router.navigate(['']);
