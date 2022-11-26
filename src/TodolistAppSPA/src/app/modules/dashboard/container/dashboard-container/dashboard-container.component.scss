@@ -1,0 +1,38 @@
+.container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.popular-events {
+    width: 80%;
+
+    &__header {
+        margin-top: 40px;
+    }
+
+    &__list {
+        display: flex;
+
+        .event {
+            margin-right: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            width: 10%;
+            background-color: #FFF;
+            padding: 30px 30px 30px 30px;
+            border-radius: 10px;
+            box-shadow: 10px 10px 9px -14px rgba(66, 68, 90, 1);
+
+            &-icon {
+                margin-bottom: 20px;
+            }
+
+            &-count {
+                color: gray;
+            }   
+        }
+    }
+}

@@ -1,3 +1,4 @@
+import { SharedModule } from './shared/shared.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
@@ -6,6 +7,7 @@ import { MainLayoutComponent } from './core/layouts/main-layout/main-layout.comp
 import { MenuComponent } from './core/menu/menu.component';
 import { CoreModule } from './core/core.module';
 import { DashboardModule } from './modules/dashboard/dashboard.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -17,7 +19,9 @@ import { DashboardModule } from './modules/dashboard/dashboard.module';
     BrowserModule,
     AppRoutingModule,
     CoreModule,
-    DashboardModule
+    DashboardModule,
+    BrowserAnimationsModule,
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]
