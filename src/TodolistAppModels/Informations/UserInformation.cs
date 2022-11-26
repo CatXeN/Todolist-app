@@ -5,7 +5,7 @@ namespace TodolistAppModels.Informations
 {
     public class UserInformation
     {
-        public int UserId { get; set; }
+        public int Id { get; set; }
         public string Username { get; set; }
         [EmailAddress]
         public string Email { get; set; }

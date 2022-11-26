@@ -1,1 +1,43 @@
-<p>register-container works!</p>
+<div class="container">
+    <div class="image">
+        <img src="../../../../../assets/image/image.jpg"/>
+    </div>
+    <div class="login-panel">
+        <h2 class="login-panel__header">Register</h2>
+
+        <form class="login-panel__form" [formGroup]="registerForm" (ngSubmit)="register()">
+            <div class="input-box">
+                <span>Username</span>
+                <mat-form-field>
+                  <input type="text" matInput placeholder="username" formControlName="username">
+                </mat-form-field>
+                <span class="text-danger" *ngIf="registerForm.controls['username'].invalid && (registerForm.controls['username'].dirty || registerForm.controls['username'].touched)">Username is required</span>
+            </div>
+
+            <div class="input-box">
+                <span>Email adress</span>
+                <mat-form-field>
+                  <input type="email" matInput placeholder="name@email.com" formControlName="email">
+                </mat-form-field>
+
+                <span class="text-danger" *ngIf="registerForm.controls['email'].invalid && (registerForm.controls['email'].dirty || registerForm.controls['email'].touched)">E-mail is required</span>
+            </div>
+
+            <div class="input-box">
+                <span>Password</span>
+                <mat-form-field>
+                  <input type="password" matInput placeholder="*******" formControlName="password">
+                </mat-form-field>
+
+                <span class="text-danger" *ngIf="registerForm.controls['password'].invalid && (registerForm.controls['password'].dirty || registerForm.controls['password'].touched)">Password is required</span>
+            </div>
+
+            <div class="input-box">
+                <mat-checkbox formControlName="agreeTerm">Agree term</mat-checkbox>
+                <span class="text-danger" *ngIf="registerForm.controls['agreeTerm'].invalid && (registerForm.controls['agreeTerm'].dirty || registerForm.controls['agreeTerm'].touched)">Agree is required</span>
+
+                <button type="submit" mat-raised-button color="primary">Register</button>
+            </div>
+        </form>
+    </div>
+</div>

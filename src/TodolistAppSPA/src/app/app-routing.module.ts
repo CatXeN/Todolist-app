@@ -20,7 +20,7 @@ const routes: Routes = [
     component: MainLayoutComponent,
     children: [
       {
-        path: 'dashboard',
+        path: '',
         loadChildren: () => import('./modules/dashboard/dashboard.module').then(m => m.DashboardModule)
       }
     ]
