@@ -4,7 +4,7 @@ import { DashboardContainerComponent } from './container/dashboard-container/das
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'dashboard',
     component: DashboardContainerComponent
   }
 ];

@@ -28,7 +28,7 @@ export class LoginContainerComponent {
 
       this.authService.login(data).subscribe(token => {
         localStorage.setItem('token', token);
-        this.router.navigate(['panel']);
+        this.router.navigate(['panel/dashboard']);
       }, error => {
         this.snackBar.openSnackBar(error.error, 'Ok')
       });
