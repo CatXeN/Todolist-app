@@ -1,16 +1,23 @@
 <nav class="menu">
+  <div class="header">
+    <h2>TodolistApp</h2>
+  </div>
+
   <ul class="menu__list">
     <li class="menu__list--item">
-      <button mat-button>Dashboard</button>
+      <mat-icon fontIcon="grid_view"></mat-icon>
+      <a [routerLink]="['dashboard']" [routerLinkActive]="['is-active']">Dashboard</a>
     </li>
     <li class="menu__list--item">
-      <button mat-button>Project</button>
+      <mat-icon fontIcon="folder"></mat-icon>
+      <a>Project</a>  <!-- implement mat-tree to display projects -->
     </li>
     <li class="menu__list--item">
-      <button mat-button>Settings</button>     
+      <mat-icon fontIcon="settings"></mat-icon>
+      <a>Settings</a>     
     </li>
     <li class="menu__list--item">
-      <button mat-button>Teams</button>
+      <a>Teams</a>
     </li>
   </ul>
 </nav>

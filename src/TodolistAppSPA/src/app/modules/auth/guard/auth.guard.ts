@@ -24,6 +24,8 @@ export class AuthGuard implements CanActivate {
       const decodedToken = this.jwtHelper.decodeToken(token);
 
       if (Date.now() >= decodedToken.exp * 1000) {
+        localStorage.removeItem('token');
+        localStorage.removeItem('id');
         this.router.navigate(['']);
         return false;
       }      
