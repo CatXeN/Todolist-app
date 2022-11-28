@@ -4,7 +4,7 @@ import { ProjectContainerComponent } from './container/project-container/project
 
 const routes: Routes = [
   {
-    path: 'project',
+    path: ':id',
     component: ProjectContainerComponent
   }
 ];

@@ -25,6 +25,7 @@ import {MatStepperModule} from '@angular/material/stepper';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatCardModule} from '@angular/material/card';
+import {MatTreeModule} from '@angular/material/tree';
 
 @NgModule({
     imports: [
@@ -53,7 +54,8 @@ import {MatCardModule} from '@angular/material/card';
       MatStepperModule,
       MatExpansionModule,
       MatMenuModule,
-      MatCardModule
+      MatCardModule,
+      MatTreeModule
     ],
     exports: [
       MatButtonModule,
@@ -81,7 +83,8 @@ import {MatCardModule} from '@angular/material/card';
       MatStepperModule,
       MatExpansionModule,
       MatMenuModule,
-      MatCardModule
+      MatCardModule,
+      MatTreeModule
     ]
   })
   export class MaterialModule { }

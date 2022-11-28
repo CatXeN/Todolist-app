@@ -11,5 +11,6 @@ namespace TodolistAppDomain.Interfaces
     {
         Task<Board> Insert(Board entity);
         Task<IEnumerable<Board>> GetAll();
+        Task<Board> GetBoard(int id);
     }
 }

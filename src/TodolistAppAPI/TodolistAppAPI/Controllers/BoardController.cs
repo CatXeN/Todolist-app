@@ -28,5 +28,8 @@ namespace TodolistAppAPI.Controllers
 
         [HttpGet]
         public async Task<IActionResult> GetBoards() => Ok(await _repository.GetAll());
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetBoard(int id) => Ok(await _repository.GetBoard(id));
     }
 }

@@ -30,5 +30,10 @@ namespace TodolistAppDomain.Repositories
         {
             return await _context.Boards.ToListAsync();
         }
+
+        public async Task<Board> GetBoard(int id)
+        {
+            return await _context.Boards.FirstOrDefaultAsync(x => x.Id == id);
+        }
     }
 }
