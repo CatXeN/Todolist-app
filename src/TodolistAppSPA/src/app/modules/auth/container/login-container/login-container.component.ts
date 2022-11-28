@@ -31,7 +31,7 @@ export class LoginContainerComponent {
       this.authService.login(data).subscribe({
           next: (token) => { 
             localStorage.setItem('token', token);
-            this.router.navigate(['panel']);
+            this.router.navigate(['panel/dashboard']);
             const decodedToken = this.jwtHelper.decodeToken(token);
             localStorage.setItem('id', decodedToken.nameid);
             localStorage.setItem('role', decodedToken.role);
