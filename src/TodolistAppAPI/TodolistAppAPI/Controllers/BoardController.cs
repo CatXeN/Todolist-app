@@ -9,10 +9,12 @@ namespace TodolistAppAPI.Controllers
     public class BoardController : ControllerBase
     {
         private readonly IBoardRepository _repository;
+        private readonly IListRepository _listRepository;
 
-        public BoardController(IBoardRepository repository) 
+        public BoardController(IBoardRepository repository, IListRepository listRepository) 
         {
-                _repository = repository;
+            _repository = repository;
+            _listRepository = listRepository;
         }
 
         [HttpPost]
@@ -22,6 +24,8 @@ namespace TodolistAppAPI.Controllers
 
             if (result.Id == 0)
                 return StatusCode(StatusCodes.Status500InternalServerError);
+
+            await _listRepository.InsertDefultList(result.Id);
                 
             return Ok(result.Id);
         }
