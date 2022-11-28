@@ -1,5 +1,5 @@
 import { UserLogin } from './../../../../shared/models/user-login.model';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
@@ -11,7 +11,7 @@ import { JwtHelperService } from '@auth0/angular-jwt';
   templateUrl: './login-container.component.html',
   styleUrls: ['./login-container.component.scss']
 })
-export class LoginContainerComponent {
+export class LoginContainerComponent implements OnInit {
 
   loginForm = this.fb.group({
     username: ['', Validators.required],
@@ -20,6 +20,12 @@ export class LoginContainerComponent {
   jwtHelper = new JwtHelperService();
 
   constructor(private fb: FormBuilder, private authService: AuthService, private router:Router, private snackBar: SnackbarService) {}
+  
+  ngOnInit(): void {
+    if (localStorage.getItem('token')) {
+      this.router.navigate(['panel/dashboard']);
+    }
+  }
 
   login(): void {
     if (this.loginForm.valid) {

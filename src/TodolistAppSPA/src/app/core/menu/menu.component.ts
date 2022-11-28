@@ -3,6 +3,7 @@ import { FlatTreeControl } from '@angular/cdk/tree';
 import { Component } from '@angular/core';
 import { MatTreeFlatDataSource, MatTreeFlattener } from '@angular/material/tree';
 import { BoardNode } from '../../shared/models/board-node.model';
+import { Router } from '@angular/router';
 
 interface ExampleFlatNode {
   expandable: boolean;
@@ -40,7 +41,7 @@ export class MenuComponent {
 
   dataSource = new MatTreeFlatDataSource(this.treeControl, this.treeFlattener);
 
-  constructor(private dashboardService: DashboardService) {
+  constructor(private dashboardService: DashboardService, public router: Router) {
     let TREE_DATA: BoardNode[] = [];
 
     dashboardService.getBoardsNode().subscribe(result => {

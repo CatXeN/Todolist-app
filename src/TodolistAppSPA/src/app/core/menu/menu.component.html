@@ -11,7 +11,7 @@
     <li class="menu__list--item">
       <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
         <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding>
-          <a [routerLink]="generateRoute(node.name)">{{node.name}}</a>
+          <a [routerLink]="generateRoute(node.name)" [routerLinkActive]="['is-active']">{{node.name}}</a>
         </mat-tree-node>
         <mat-tree-node *matTreeNodeDef="let node;when: hasChild" matTreeNodePadding>
           <mat-icon fontIcon="folder"></mat-icon>
@@ -21,16 +21,13 @@
               {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
             </mat-icon>
           </button>
-          {{node.name}}
+          <a [ngClass]="router.url.indexOf('project') != -1 ? 'is-active' : ''">{{node.name}}</a>
         </mat-tree-node>
       </mat-tree>
     </li>
     <li class="menu__list--item">
       <mat-icon fontIcon="settings"></mat-icon>
-      <a>Settings</a>     
-    </li>
-    <li class="menu__list--item">
-      <a>Teams</a>
+      <a [routerLink]="['settings']" [routerLinkActive]="['is-active']">Settings</a>     
     </li>
   </ul>
 </nav>
