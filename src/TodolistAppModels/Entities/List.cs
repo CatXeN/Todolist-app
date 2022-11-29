@@ -15,8 +15,6 @@ namespace TodolistAppModels.Entities
         public string Name { get; set; }
         public int Order { get; set; }
 
-        public ICollection<Task> Tasks { get; set; }
-
         [ForeignKey("Board")]
         public int BoardId { get; set; }
         public virtual Board Board { get; set; }

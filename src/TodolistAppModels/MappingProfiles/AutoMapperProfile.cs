@@ -14,6 +14,7 @@ namespace TodolistAppModels.MappingProfiles
         public AutoMapperProfile()
         {
             CreateMap<User, UserInformation>().ReverseMap();
+            CreateMap<List, ListInformation>().ReverseMap();
         }
     }
 }
