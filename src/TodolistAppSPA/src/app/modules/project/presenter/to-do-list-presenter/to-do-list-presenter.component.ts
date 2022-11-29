@@ -1,5 +1,7 @@
+import { Task } from './../../../../shared/models/task.model';
+import { ProjectService } from './../../services/project.service';
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
-import { Component } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-to-do-list-presenter',
@@ -7,11 +9,21 @@ import { Component } from '@angular/core';
   styleUrls: ['./to-do-list-presenter.component.scss']
 })
 export class ToDoListPresenterComponent {
-  todo = ['Get to work', 'Pick up groceries', 'Go home', 'Fall asleep'];
+  todo: Task[] = [];
+  done: Task[] = [];
 
-  done = ['Get up', 'Brush teeth', 'Take a shower', 'Check e-mail', 'Walk dog'];
+  @Input() set board(id: number) {
+    if (id !== undefined && id !== 0) { 
+      this.projectService.getList(id).subscribe(result => {
+        this.todo = result[0].tasks;
+        this.done = result[2].tasks;
+      });
+    }
+  }
 
-  drop(event: CdkDragDrop<string[]>) {
+  constructor(private projectService: ProjectService) {}
+
+  drop(event: CdkDragDrop<Task[]>) {
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {

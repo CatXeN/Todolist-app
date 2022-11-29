@@ -36,7 +36,7 @@ namespace TodolistAppAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Boards");
+                    b.ToTable("Boards", (string)null);
                 });
 
             modelBuilder.Entity("TodolistAppModels.Entities.List", b =>
@@ -61,7 +61,7 @@ namespace TodolistAppAPI.Migrations
 
                     b.HasIndex("BoardId");
 
-                    b.ToTable("Lists");
+                    b.ToTable("Lists", (string)null);
                 });
 
             modelBuilder.Entity("TodolistAppModels.Entities.Task", b =>
@@ -90,7 +90,7 @@ namespace TodolistAppAPI.Migrations
 
                     b.HasIndex("ListId");
 
-                    b.ToTable("Tasks");
+                    b.ToTable("Tasks", (string)null);
                 });
 
             modelBuilder.Entity("TodolistAppModels.Entities.User", b =>
@@ -122,7 +122,7 @@ namespace TodolistAppAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users");
+                    b.ToTable("Users", (string)null);
                 });
 
             modelBuilder.Entity("TodolistAppModels.Entities.UserToBoard", b =>
@@ -148,7 +148,7 @@ namespace TodolistAppAPI.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("UsersToBoards");
+                    b.ToTable("UsersToBoards", (string)null);
                 });
 
             modelBuilder.Entity("TodolistAppModels.Entities.List", b =>

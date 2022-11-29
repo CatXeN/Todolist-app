@@ -4,6 +4,7 @@ using TodolistAppAPI.Data;
 using TodolistAppDomain.Helper;
 using TodolistAppDomain.Interfaces;
 using TodolistAppModels.Entities;
+using TodolistAppModels.Informations;
 
 namespace TodolistAppDomain.Repositories
 {
@@ -18,12 +19,21 @@ namespace TodolistAppDomain.Repositories
             _mapper = mapper;
         }
 
-        public async Task<IEnumerable<List>> GetFullList(int boardId)
+        public async Task<List<ListInformation>> GetFullList(int boardId)
         {
-            return _mapper.Map<IEnumerable<List>>(await _context.Lists.
+            var list =  _mapper.Map<IEnumerable<List>>(await _context.Lists.
                 Where(l => l.BoardId == boardId).
-                Include(t => t.Tasks).
                 ToListAsync());
+
+            var lists = list.Select(l => new ListInformation()
+            {
+                Id = l.Id,
+                Name = l.Name,
+                Order = l.Order,
+                Tasks = _context.Tasks.Where(t => t.ListId == l.Id).ToList()
+            }).ToList();
+
+            return lists;
         }
 
         public async System.Threading.Tasks.Task InsertDefaultList(int boardId)

@@ -28,6 +28,7 @@ builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 #region DI Repositories
 builder.Services.AddTransient<IBoardRepository, BoardRepository>();
 builder.Services.AddTransient<IListRepository, ListRepository>();
+builder.Services.AddTransient<ITaskRepository, TaskRepository>();
 #endregion
 
 #region Authentication
