@@ -26,7 +26,7 @@ namespace TodolistAppDomain.Repositories
                 ToListAsync());
         }
 
-        public async System.Threading.Tasks.Task InsertDefultList(int boardId)
+        public async System.Threading.Tasks.Task InsertDefaultList(int boardId)
         {
             var list = ListHelper.GenerateDefaultLists(boardId);
             await _context.Lists.AddRangeAsync(list);

@@ -25,7 +25,7 @@ namespace TodolistAppAPI.Controllers
             if (result.Id == 0)
                 return StatusCode(StatusCodes.Status500InternalServerError);
 
-            await _listRepository.InsertDefultList(result.Id);
+            await _listRepository.InsertDefaultList(result.Id);
                 
             return Ok(result.Id);
         }
