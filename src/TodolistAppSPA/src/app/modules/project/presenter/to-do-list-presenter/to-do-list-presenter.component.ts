@@ -10,12 +10,14 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class ToDoListPresenterComponent {
   todo: Task[] = [];
+  inProgress: Task[] = [];
   done: Task[] = [];
 
   @Input() set board(id: number) {
     if (id !== undefined && id !== 0) { 
       this.projectService.getList(id).subscribe(result => {
         this.todo = result[0].tasks;
+        this.inProgress = result[1].tasks;
         this.done = result[2].tasks;
       });
     }
