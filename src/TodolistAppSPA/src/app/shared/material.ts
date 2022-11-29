@@ -26,6 +26,8 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatCardModule} from '@angular/material/card';
 import {MatTreeModule} from '@angular/material/tree';
+import {DragDropModule} from '@angular/cdk/drag-drop';
+
 
 @NgModule({
     imports: [
@@ -55,7 +57,8 @@ import {MatTreeModule} from '@angular/material/tree';
       MatExpansionModule,
       MatMenuModule,
       MatCardModule,
-      MatTreeModule
+      MatTreeModule,
+      DragDropModule
     ],
     exports: [
       MatButtonModule,
@@ -84,7 +87,8 @@ import {MatTreeModule} from '@angular/material/tree';
       MatExpansionModule,
       MatMenuModule,
       MatCardModule,
-      MatTreeModule
+      MatTreeModule,
+      DragDropModule
     ]
   })
   export class MaterialModule { }
