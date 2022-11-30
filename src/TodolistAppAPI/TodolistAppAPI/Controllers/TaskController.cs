@@ -3,6 +3,7 @@ using TodolistAppDomain.Interfaces;
 using TodolistAppDomain.Services.Tasks;
 using TodolistAppModels.Informations;
 using TodolistAppModels.Informations.Tasks;
+using Task = TodolistAppModels.Entities.Task;
 
 namespace TodolistAppAPI.Controllers;
 [Route("api/[controller]")]
@@ -38,5 +39,12 @@ public class TaskController: ControllerBase
     {
         await _service.PrepareTaskToTransfer(taskInformation);
         return Ok(true);
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> GetTask(int id)
+    {
+        var task = await _repository.GetTask(id);
+        return Ok(task);
     }
 }
