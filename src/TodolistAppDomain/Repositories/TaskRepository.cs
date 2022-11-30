@@ -19,4 +19,10 @@ public class TaskRepository: ITaskRepository
         await _context.SaveChangesAsync();
         return task;
     }
+
+    public async System.Threading.Tasks.Task Update(Task task)
+    {
+        _context.Tasks.Update(task);
+        await _context.SaveChangesAsync();
+    }
 }

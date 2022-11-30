@@ -4,6 +4,7 @@ import { SharedModule } from './../../shared/shared.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ToDoListPresenterComponent } from './presenter/to-do-list-presenter/to-do-list-presenter.component';
+import { ActionPresenterComponent } from './presenter/action-presenter/action-presenter.component';
 
 @NgModule({
   imports: [
@@ -13,7 +14,8 @@ import { ToDoListPresenterComponent } from './presenter/to-do-list-presenter/to-
   ],
   declarations: [
     ProjectContainerComponent,
-    ToDoListPresenterComponent
+    ToDoListPresenterComponent,
+    ActionPresenterComponent
   ]
 })
 export class ProjectModule { }

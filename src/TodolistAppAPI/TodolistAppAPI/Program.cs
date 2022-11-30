@@ -9,6 +9,7 @@ using TodolistAppAPI.Data;
 using TodolistAppDomain.Identity;
 using TodolistAppDomain.Interfaces;
 using TodolistAppDomain.Repositories;
+using TodolistAppDomain.Services.Tasks;
 using TodolistAppModels.Configs;
 using TodolistAppModels.Entities;
 
@@ -29,6 +30,7 @@ builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddTransient<IBoardRepository, BoardRepository>();
 builder.Services.AddTransient<IListRepository, ListRepository>();
 builder.Services.AddTransient<ITaskRepository, TaskRepository>();
+builder.Services.AddTransient<ITaskService, TaskService>();
 #endregion
 
 #region Authentication

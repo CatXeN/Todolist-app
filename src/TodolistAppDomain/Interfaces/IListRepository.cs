@@ -7,5 +7,6 @@ namespace TodolistAppDomain.Interfaces
     {
         System.Threading.Tasks.Task InsertDefaultList(int boardId);
         Task<List<ListInformation>> GetFullList(int boardId);
+        Task<List<List>> GetLists(int boardId);
     }
 }
