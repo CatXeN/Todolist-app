@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using TodolistAppDomain.Interfaces;
 using TodolistAppModels.Entities;
 using TodolistAppModels.Informations;
+using Task = TodolistAppModels.Entities.Task;
 
 namespace TodolistAppAPI.Controllers;
 [Route("api/[controller]")]
@@ -28,5 +29,12 @@ public class TaskController: ControllerBase
 
         await _repository.Insert(task);
         return Ok();
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> GetTask(int id)
+    {
+        var task = await _repository.GetTask(id);
+        return Ok(task);
     }
 }

@@ -1,3 +1,5 @@
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using TodolistAppAPI.Data;
 using TodolistAppDomain.Interfaces;
 using Task = TodolistAppModels.Entities.Task;
@@ -18,5 +20,10 @@ public class TaskRepository: ITaskRepository
         await _context.Tasks.AddAsync(task);
         await _context.SaveChangesAsync();
         return task;
+    }
+
+    public async Task<Task> GetTask(int taskId)
+    {
+        return await _context.Tasks.FirstOrDefaultAsync(x => x.Id == taskId);
     }
 }
