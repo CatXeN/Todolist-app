@@ -18,9 +18,9 @@ namespace TodolistAppDomain.Services.Tasks
         {
             var lists = await _listRepository.GetLists(transferTaskInformation.BoardId);
 
-            //var task = new TodolistAppModels.Entities.Task();
-            //task.ListId = lists[transferTaskInformation.ListOrder].Id;
-            //await _taskRepository.Update(task);
+            var task = await _taskRepository.GetTask(transferTaskInformation.TaskId);
+            task.ListId = lists[transferTaskInformation.ListOrder].Id;
+            await _taskRepository.Update(task);
         }
     }
 }

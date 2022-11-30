@@ -1,28 +1,36 @@
 <h1 mat-dialog-title>Create new task</h1>
-<div mat-dialog-content>
+<div mat-dialog-content [formGroup]="addTaskForm">
     <div class="input-box">
         <span>Name</span>
         <mat-form-field>
-          <input formControlName="username" type="text" matInput placeholder="Name">
+          <input formControlName="name" type="text" matInput placeholder="Name">
         </mat-form-field>
+
+        <span class="text-danger" *ngIf="addTaskForm.controls['name'].invalid && (addTaskForm.controls['name'].dirty || addTaskForm.controls['name'].touched)">Name is required</span>
     </div>
 
     <div class="input-box">  
         <span>Description</span>
         <mat-form-field>
-          <input formControlName="username" type="text" matInput placeholder="Description">
+          <input formControlName="description" type="text" matInput placeholder="Description">
         </mat-form-field>
+        <span class="text-danger" *ngIf="addTaskForm.controls['description'].invalid && (addTaskForm.controls['description'].dirty || addTaskForm.controls['description'].touched)">Description is required</span>
     </div>
 
     <div class="input-box">
-        <span>Select board</span>
+        <span>Select lists</span>
         <mat-form-field appearance="fill">
-            <mat-label>Toppings</mat-label>
-            <mat-select multiple>
-              <mat-option>Zdajesz</mat-option>
+            <mat-label>lists</mat-label>
+            <mat-select formControlName="listId">
+              <mat-option *ngFor="let list of lists" [value]="list.id">{{list.name}}</mat-option>
             </mat-select>
-          </mat-form-field>
+        </mat-form-field>
+
+        <span class="text-danger" *ngIf="addTaskForm.controls['listId'].invalid && (addTaskForm.controls['listId'].dirty || addTaskForm.controls['listId'].touched)">Select list is required</span>
     </div>
 
-    <button mat-raised-button color="primary">Login</button>
+    <div class="buttons">
+        <button mat-raised-button (click)="onNoClick()" color="warn">Cancel</button>
+        <button mat-raised-button (click)="addTask()" color="primary">Add</button>
+    </div>
 </div>

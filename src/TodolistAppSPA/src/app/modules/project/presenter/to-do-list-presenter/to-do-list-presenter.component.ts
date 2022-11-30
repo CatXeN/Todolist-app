@@ -18,14 +18,23 @@ export class ToDoListPresenterComponent {
 
   @Input() set board(id: number) {
     if (id !== undefined && id !== 0) { 
-      this.projectService.getList(id).subscribe(result => {
-        this.todo = result[0].tasks;
-        this.inProgress = result[1].tasks;
-        this.done = result[2].tasks;
-      });
-
+      this.getList(id);
       this.boardId = id;
     }
+  }
+
+  @Input() set message(data: string) {
+    if (data === 'created task') {
+      this.getList(this.boardId);
+    }
+  }
+
+  getList(id: number) {
+    this.projectService.getList(id).subscribe(result => {
+      this.todo = result[0].tasks;
+      this.inProgress = result[1].tasks;
+      this.done = result[2].tasks;
+    });
   }
 
   constructor(private projectService: ProjectService) {}
