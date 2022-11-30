@@ -1,0 +1,28 @@
+<h1 mat-dialog-title>Create new task</h1>
+<div mat-dialog-content>
+    <div class="input-box">
+        <span>Name</span>
+        <mat-form-field>
+          <input formControlName="username" type="text" matInput placeholder="Name">
+        </mat-form-field>
+    </div>
+
+    <div class="input-box">  
+        <span>Description</span>
+        <mat-form-field>
+          <input formControlName="username" type="text" matInput placeholder="Description">
+        </mat-form-field>
+    </div>
+
+    <div class="input-box">
+        <span>Select board</span>
+        <mat-form-field appearance="fill">
+            <mat-label>Toppings</mat-label>
+            <mat-select multiple>
+              <mat-option>Zdajesz</mat-option>
+            </mat-select>
+          </mat-form-field>
+    </div>
+
+    <button mat-raised-button color="primary">Login</button>
+</div>
