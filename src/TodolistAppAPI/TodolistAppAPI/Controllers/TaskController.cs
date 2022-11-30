@@ -34,7 +34,7 @@ public class TaskController: ControllerBase
     [HttpGet]
     public async Task<IActionResult> GetTask(int id)
     {
-        await _repository.GetTask(id);
-        return Ok();
+        var task = await _repository.GetTask(id);
+        return Ok(task);
     }
 }
