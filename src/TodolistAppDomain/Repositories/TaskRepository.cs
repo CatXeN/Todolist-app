@@ -22,8 +22,8 @@ public class TaskRepository: ITaskRepository
         return task;
     }
 
-    public async IActionResult GetTask(int taskId)
+    public async Task<Task> GetTask(int taskId)
     {
-        return 
+        return await _context.Tasks.FirstOrDefaultAsync(x => x.Id == taskId);
     }
 }
