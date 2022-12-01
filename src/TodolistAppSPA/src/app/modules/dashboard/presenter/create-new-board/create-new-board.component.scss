@@ -1,0 +1,25 @@
+.container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.create-board {
+    margin-top: 20px;
+    width: 90%;
+
+    &__box {
+        display: flex;
+        
+        &--input {
+            width: 40%;
+        }
+
+        &--button {
+            height: 56px;
+            margin-left: 20px;
+        }
+    }
+}

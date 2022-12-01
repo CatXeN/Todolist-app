@@ -1,6 +1,14 @@
 <div class="container">
     <h1>{{selectedBoard.name}}</h1>
-    <app-action-presenter (messageEvent)="receiveMessage($event)" [board]="selectedBoard.id"></app-action-presenter>
-    <app-to-do-list-presenter [message]="message" [board]="selectedBoard.id"></app-to-do-list-presenter>
+
+    <mat-tab-group>
+        <mat-tab class="tab" label="Board">             
+            <app-action-presenter (messageEvent)="receiveMessage($event)" [board]="selectedBoard.id"></app-action-presenter>
+            <app-to-do-list-presenter [message]="message" [board]="selectedBoard.id"></app-to-do-list-presenter> 
+        </mat-tab>
+        <mat-tab label="Settings">
+
+        </mat-tab>
+    </mat-tab-group>
 </div>
 

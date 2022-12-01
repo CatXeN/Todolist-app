@@ -4,6 +4,7 @@ import { DashboardContainerComponent } from './container/dashboard-container/das
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DashboardBoardListComponent } from './presenter/dashboard-board-list/dashboard-board-list.component';
+import { CreateNewBoardComponent } from './presenter/create-new-board/create-new-board.component';
 
 @NgModule({
   imports: [
@@ -13,7 +14,8 @@ import { DashboardBoardListComponent } from './presenter/dashboard-board-list/da
   ],
   declarations: [
     DashboardContainerComponent,
-    DashboardBoardListComponent
+    DashboardBoardListComponent,
+    CreateNewBoardComponent
   ]
 })
 export class DashboardModule { }

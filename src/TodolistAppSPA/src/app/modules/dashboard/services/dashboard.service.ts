@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BoardNode } from 'src/app/shared/models/board-node.model';
+import { AddBoard } from 'src/app/shared/models/add-board.model';
 
 @Injectable({
   providedIn: 'root'
@@ -19,5 +20,9 @@ export class DashboardService {
 
   getBoardsNode(): Observable<BoardNode[]> {
     return this.httpClient.get<Board[]>(this.baseUrl);
+  }
+
+  addBoard(addBoard: AddBoard): Observable<number> {
+    return this.httpClient.post<number>(this.baseUrl, addBoard);
   }
 }
