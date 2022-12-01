@@ -1,0 +1,16 @@
+<div class="container">
+    <div class="create-board">
+        <div>
+            <h2>Create new board</h2>
+        </div>
+
+        <div class="create-board__box">
+            <mat-form-field class="create-board__box--input">
+                <mat-label>Board name</mat-label>
+                <input matInput placeholder="ex. example board name" [(ngModel)]="name">
+            </mat-form-field>
+
+            <button (click)="createBoard()" class="create-board__box--button" mat-raised-button color="primary">Create</button>
+        </div>
+    </div>
+</div>

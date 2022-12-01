@@ -41,6 +41,13 @@ public class TaskController: ControllerBase
         return Ok(true);
     }
 
+    [HttpPost("reOrder")]
+    public async Task<IActionResult> ReOrderTasks(ReOrderTasksInformation tasks)
+    {
+        await _service.ReOrderTasks(tasks);
+        return Ok(true);
+    }
+
     [HttpGet]
     public async Task<IActionResult> GetTask(int id)
     {

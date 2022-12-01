@@ -1,3 +1,4 @@
+import { ReOrderTasks } from './../../../shared/models/re-order-task.model';
 import { AddTask } from './../../../shared/models/add-task.model';
 import { TransferTask } from './../../../shared/models/transfer-task.model';
 import { List } from './../../../shared/models/list.model';
@@ -32,5 +33,9 @@ export class ProjectService {
 
   transferTask(transferData: TransferTask): Observable<boolean> {
     return this.httpClient.post<boolean>(this.taskUrl + 'transferTask', transferData);
+  }
+
+  reOrder(tasks: ReOrderTasks): Observable<boolean> {
+    return this.httpClient.post<boolean>(this.taskUrl + 'reOrder', tasks);
   }
 }

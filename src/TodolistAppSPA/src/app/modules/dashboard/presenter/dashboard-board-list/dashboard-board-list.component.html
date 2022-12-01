@@ -6,7 +6,7 @@
 
         <div class="popular-events__list">
 
-            <div class="event" *ngFor="let board of boards">
+            <div class="event" *ngFor="let board of boards" [routerLink]="['../project', board.id]">
                 <mat-icon style="color: red;" class="event-icon" fontIcon="radio_button_unchecked"></mat-icon>
                 <b>{{board.name}}</b>
                 <span class="event-count">22 Events</span>

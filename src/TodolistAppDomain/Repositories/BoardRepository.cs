@@ -26,14 +26,25 @@ namespace TodolistAppDomain.Repositories
            return entity;
         }
 
-        public async Task<IEnumerable<Board>> GetAll()
+        public async Task<IEnumerable<Board>> GetAll(int userId)
         {
-            return await _context.Boards.ToListAsync();
+            var usersToBoard = await _context.UsersToBoards.
+                Where(x => x.UserId == userId).
+                Select(b => b.BoardId).
+                ToListAsync();
+
+            return await _context.Boards.Where(x => usersToBoard.Contains(x.Id)).ToListAsync();
         }
 
         public async Task<Board> GetBoard(int id)
         {
             return await _context.Boards.FirstOrDefaultAsync(x => x.Id == id);
+        }
+
+        public async System.Threading.Tasks.Task AssignUserToBoard(UserToBoard assign)
+        {
+            await _context.AddAsync(assign);
+            await _context.SaveChangesAsync();
         }
     }
 }

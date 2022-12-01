@@ -22,13 +22,13 @@ namespace TodolistAppDomain.Helper
                 {
                     BoardId = boardId,
                     Name = "In Progress",
-                    Order = 1
+                    Order = 2
                 },
                 new TodolistAppModels.Entities.List()
                 {
                     BoardId = boardId,
                     Name = "Done",
-                    Order = 1
+                    Order = 3
                 }
             };
 
