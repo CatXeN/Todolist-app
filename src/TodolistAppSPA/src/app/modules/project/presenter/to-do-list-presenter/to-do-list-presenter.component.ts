@@ -3,6 +3,7 @@ import { Task } from './../../../../shared/models/task.model';
 import { ProjectService } from './../../services/project.service';
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
 import { Component, Input, OnInit } from '@angular/core';
+import { ReOrderTasks } from 'src/app/shared/models/re-order-task.model';
 
 @Component({
   selector: 'app-to-do-list-presenter',
@@ -42,6 +43,12 @@ export class ToDoListPresenterComponent {
   drop(event: CdkDragDrop<Task[]>) {
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+      
+      const reorder: ReOrderTasks = {
+        tasks: event.container.data
+      }
+
+      this.projectService.reOrder(reorder).subscribe();
     } else {
       const transferTask: TransferTask =  {
         taskId: event.previousContainer.data[event.previousIndex].id,

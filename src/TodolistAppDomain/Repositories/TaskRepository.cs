@@ -35,4 +35,15 @@ public class TaskRepository: ITaskRepository
     {
         return await _context.Tasks.FirstOrDefaultAsync(x => x.Id == taskId);
     }
+
+    public async System.Threading.Tasks.Task UpdateTasks(List<Task> tasks)
+    {
+        _context.Tasks.UpdateRange(tasks);
+        await _context.SaveChangesAsync();
+    }
+
+    public async Task<List<Task>> GetTasks(int listId)
+    {
+        return await _context.Tasks.Where(x => x.ListId == listId).ToListAsync();
+    }
 }

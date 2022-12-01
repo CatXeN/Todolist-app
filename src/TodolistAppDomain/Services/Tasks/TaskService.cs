@@ -22,5 +22,15 @@ namespace TodolistAppDomain.Services.Tasks
             task.ListId = lists[transferTaskInformation.ListOrder].Id;
             await _taskRepository.Update(task);
         }
+
+        public async Task ReOrderTasks(ReOrderTasksInformation reorderTasksInformation)
+        {
+            var tasks = await _taskRepository.GetTasks(reorderTasksInformation.Tasks[0].ListId);
+            
+            foreach (var task in tasks)
+                task.Order = reorderTasksInformation.Tasks.FindIndex(x => x.Id == task.Id) + 1;
+
+            await _taskRepository.UpdateTasks(tasks);
+        }
     }
 }

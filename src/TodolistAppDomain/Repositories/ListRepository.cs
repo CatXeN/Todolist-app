@@ -23,8 +23,9 @@ namespace TodolistAppDomain.Repositories
 
         public async Task<List<ListInformation>> GetFullList(int boardId)
         {
-            var list =  _mapper.Map<IEnumerable<List>>(await _context.Lists.
+            var list = _mapper.Map<IEnumerable<List>>(await _context.Lists.
                 Where(l => l.BoardId == boardId).
+                Include(l => l.Board).
                 ToListAsync());
 
             var lists = list.Select(l => new ListInformation()
@@ -32,7 +33,7 @@ namespace TodolistAppDomain.Repositories
                 Id = l.Id,
                 Name = l.Name,
                 Order = l.Order,
-                Tasks = _context.Tasks.Where(t => t.ListId == l.Id).ToList()
+                Tasks = _context.Tasks.Where(t => t.ListId == l.Id).OrderBy(t => t.Order).ToList()
             }).ToList();
 
             return lists;
