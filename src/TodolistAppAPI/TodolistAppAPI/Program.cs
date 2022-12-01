@@ -5,7 +5,9 @@ using Microsoft.EntityFrameworkCore.Migrations.Internal;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using TodolistAppAPI.Authorization;
 using TodolistAppAPI.Data;
+using TodolistAppAPI.Factories;
 using TodolistAppDomain.Identity;
 using TodolistAppDomain.Interfaces;
 using TodolistAppDomain.Repositories;
@@ -25,12 +27,14 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+builder.Services.AddHttpContextAccessor();
 
 #region DI Repositories
 builder.Services.AddTransient<IBoardRepository, BoardRepository>();
 builder.Services.AddTransient<IListRepository, ListRepository>();
 builder.Services.AddTransient<ITaskRepository, TaskRepository>();
 builder.Services.AddTransient<ITaskService, TaskService>();
+builder.Services.AddTransient<IPermissionAccess, PermissionAccess>();
 #endregion
 
 #region Authentication

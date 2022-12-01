@@ -15,6 +15,7 @@ namespace TodolistAppModels.Entities
         public string Name { get; set; }
         public string Description { get; set; }
         public DateTime Date { get; set; }
+        public int Order { get; set; }
 
         [ForeignKey("List")]
         public int ListId { get; set; }
