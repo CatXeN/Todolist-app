@@ -19,6 +19,8 @@ namespace TodolistAppDomain.Repositories
             _mapper = mapper;
         }
 
+        public async Task<List<List>> GetLists(int boardId) => await _context.Lists.Where(l => l.BoardId == boardId).ToListAsync();
+
         public async Task<List<ListInformation>> GetFullList(int boardId)
         {
             var list =  _mapper.Map<IEnumerable<List>>(await _context.Lists.

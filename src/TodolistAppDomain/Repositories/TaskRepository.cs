@@ -22,6 +22,12 @@ public class TaskRepository: ITaskRepository
         return task;
     }
 
+    public async System.Threading.Tasks.Task Update(Task task)
+    {
+        _context.Tasks.Update(task);
+        await _context.SaveChangesAsync();
+    }
+    
     public async Task<Task> GetTask(int taskId)
     {
         return await _context.Tasks.FirstOrDefaultAsync(x => x.Id == taskId);

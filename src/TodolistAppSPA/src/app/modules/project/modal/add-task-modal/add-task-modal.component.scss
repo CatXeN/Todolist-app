@@ -1,0 +1,15 @@
+.input-box {
+    display: flex;
+    flex-direction: column;
+}
+
+.text-danger {
+    color: red;
+    margin-bottom: 20px;
+}
+
+.buttons { 
+    button:nth-child(2) {
+        margin-left: 10px;
+    }
+}

@@ -1,6 +1,6 @@
 import { ProjectService } from './../../services/project.service';
 import { Board } from './../../../../shared/models/board.model';
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { tap } from 'rxjs';
 
@@ -11,6 +11,7 @@ import { tap } from 'rxjs';
 })
 export class ProjectContainerComponent {
   selectedBoard: Board;
+  message:string = '';
 
   constructor(projectService: ProjectService, private route: ActivatedRoute) {
     this.selectedBoard = { id: 0, name: ''}
@@ -24,5 +25,9 @@ export class ProjectContainerComponent {
         })
       }
     })
+  }
+
+  receiveMessage($event: string) {
+    this.message = $event;
   }
 }

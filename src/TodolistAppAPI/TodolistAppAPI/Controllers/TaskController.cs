@@ -1,7 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
 using TodolistAppDomain.Interfaces;
-using TodolistAppModels.Entities;
+using TodolistAppDomain.Services.Tasks;
 using TodolistAppModels.Informations;
+using TodolistAppModels.Informations.Tasks;
 using Task = TodolistAppModels.Entities.Task;
 
 namespace TodolistAppAPI.Controllers;
@@ -10,10 +11,12 @@ namespace TodolistAppAPI.Controllers;
 public class TaskController: ControllerBase
 {
     private readonly ITaskRepository _repository;
-    
-    public TaskController(ITaskRepository repository)
+    private readonly ITaskService _service;
+
+    public TaskController(ITaskRepository repository, ITaskService service)
     {
         _repository = repository;
+        _service = service;
     }
     
     [HttpPost]
@@ -29,6 +32,13 @@ public class TaskController: ControllerBase
 
         await _repository.Insert(task);
         return Ok();
+    }
+
+    [HttpPost("transferTask")]
+    public async Task<IActionResult> TransferTask(TransferTaskInformation taskInformation)
+    {
+        await _service.PrepareTaskToTransfer(taskInformation);
+        return Ok(true);
     }
 
     [HttpGet]
