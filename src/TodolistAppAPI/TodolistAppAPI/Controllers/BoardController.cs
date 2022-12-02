@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using TodolistAppAPI.Authorization;
+using TodolistAppDomain.Exceptions;
+using TodolistAppDomain.Identity;
 using TodolistAppDomain.Interfaces;
 using TodolistAppModels.Entities;
 using TodolistAppModels.Informations.Boards;
@@ -14,12 +16,14 @@ namespace TodolistAppAPI.Controllers
         private readonly IBoardRepository _repository;
         private readonly IListRepository _listRepository;
         private readonly IPermissionAccess _access;
+        private readonly IIdentityService _identityService;
 
-        public BoardController(IBoardRepository repository, IListRepository listRepository, IPermissionAccess access) 
+        public BoardController(IBoardRepository repository, IListRepository listRepository, IPermissionAccess access, IIdentityService identityService) 
         {
             _repository = repository;
             _listRepository = listRepository;
             _access = access;
+            _identityService = identityService;
         }
 
         [HttpPost]
@@ -49,5 +53,32 @@ namespace TodolistAppAPI.Controllers
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetBoard(int id) => Ok(await _repository.GetBoard(id));
+
+        [HttpGet("GetAssignedUser/{boardId}")]
+        public async Task<IActionResult> GetAssignedUser(int boardId) => Ok(await _repository.GetAssignedUserToBoard(boardId));
+
+        [HttpPost("assignUserToBoard")]
+        public async Task<IActionResult> AssignUserToBoard(AssignUserToBoardInformation assignUserToBoardInformation)
+        {
+            try
+            {
+                var user = await _identityService.SerachUserByEmail(assignUserToBoardInformation.Email);
+
+                var assignUserToBoard = new UserToBoard()
+                {
+                    BoardId = assignUserToBoardInformation.BoardId,
+                    UserId = user,
+                    IsOwner = false
+                };
+
+                await _repository.AssignUserToBoard(assignUserToBoard);
+
+                return Ok();
+            }
+            catch (UserNotFoundException ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }

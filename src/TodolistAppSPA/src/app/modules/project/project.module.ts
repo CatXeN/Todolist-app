@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
 import { ToDoListPresenterComponent } from './presenter/to-do-list-presenter/to-do-list-presenter.component';
 import { ActionPresenterComponent } from './presenter/action-presenter/action-presenter.component';
 import { AddTaskModalComponent } from './modal/add-task-modal/add-task-modal.component';
+import { UserAssignedComponent } from './presenter/user-assigned/user-assigned.component';
 
 @NgModule({
   imports: [
@@ -17,7 +18,8 @@ import { AddTaskModalComponent } from './modal/add-task-modal/add-task-modal.com
     ProjectContainerComponent,
     ToDoListPresenterComponent,
     ActionPresenterComponent,
-    AddTaskModalComponent
+    AddTaskModalComponent,
+    UserAssignedComponent
   ]
 })
 export class ProjectModule { }

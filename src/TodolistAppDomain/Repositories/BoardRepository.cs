@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using TodolistAppAPI.Data;
 using TodolistAppDomain.Interfaces;
 using TodolistAppModels.Entities;
+using TodolistAppModels.Informations.Boards;
 
 namespace TodolistAppDomain.Repositories
 {
@@ -45,6 +46,19 @@ namespace TodolistAppDomain.Repositories
         {
             await _context.AddAsync(assign);
             await _context.SaveChangesAsync();
+        }
+
+        public async Task<List<AssignedUserToBoard>> GetAssignedUserToBoard(int boardId)
+        {
+            var users = await _context.UsersToBoards.
+                Include(x => x.User).
+                Where(x => x.BoardId == boardId).Select(x => new AssignedUserToBoard()
+                {
+                    Id = x.UserId,
+                    Email = x.User.Email,
+                }).ToListAsync();
+
+            return users;
         }
     }
 }

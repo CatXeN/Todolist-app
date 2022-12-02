@@ -6,6 +6,6 @@ namespace TodolistAppDomain.Identity
     {
         Task CreateUser(UserInformation userInformation);
         Task<string> GetToken(string username, string password);
-        Task<bool> Authorize(int userId);
+        Task<int> SerachUserByEmail(string email);
     }
 }

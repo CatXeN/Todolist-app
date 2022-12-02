@@ -10,6 +10,7 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using TodolistAppAPI.Data;
+using TodolistAppDomain.Exceptions;
 using TodolistAppDomain.Helper;
 using TodolistAppModels.Configs;
 using TodolistAppModels.Entities;
@@ -79,9 +80,14 @@ namespace TodolistAppDomain.Identity
             return tokenHandler.WriteToken(token);
         }
 
-        public Task<bool> Authorize(int userId)
+        public async Task<int> SerachUserByEmail(string email)
         {
-            throw new NotImplementedException();
+            var user = await _context.Users.FirstOrDefaultAsync(x => x.Email == email);
+
+            if (user == null)
+                throw new UserNotFoundException("User not found");
+
+            return user.Id;
         }
     }
 }
