@@ -1,3 +1,29 @@
 .container {
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 80vh;
+
+    .assign-user {
+        display: flex;
+        margin-top: 30px;
+
+        &__button {
+            margin-left: 30px;
+        }
+
+        &__field {
+            width: 400px;
+        }
+    }
+
+    .assigned-users {
+        margin-top: 20px;
+        width: 80%;
+
+        table {
+            width: 100%;
+        }
+    }
 }
