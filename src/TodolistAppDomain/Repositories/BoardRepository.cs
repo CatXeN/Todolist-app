@@ -52,7 +52,7 @@ namespace TodolistAppDomain.Repositories
         {
             var users = await _context.UsersToBoards.
                 Include(x => x.User).
-                Where(x => x.BoardId == boardId).Select(x => new AssignedUserToBoard()
+                Where(x => x.BoardId == boardId && !x.IsOwner).Select(x => new AssignedUserToBoard()
                 {
                     Id = x.UserId,
                     Email = x.User.Email,
