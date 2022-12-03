@@ -42,5 +42,20 @@ namespace TodolistAppTest.ControllerTests
             else
                 Assert.True(false, "Object was null");
         }
+
+        [Fact]
+        public async System.Threading.Tasks.Task AddBoard_ModelIsValid_ServiceHasBeenCalled()
+        {
+            _repository.Setup(x => x.Insert(It.IsAny<Board>()))
+                .ReturnsAsync(new Board() { Id = 2, Name = "TestBoard" });
+            _repository.Setup(x => x.AssignUserToBoard(It.IsAny<UserToBoard>()));
+            _listRepository.Setup(x => x.InsertDefaultList(It.IsAny<int>()));
+
+            var result = await _controller.AddBoard(new AddBoardInformation() { Name = It.IsAny<string>(), UserId = It.IsAny<int>() }) as OkObjectResult;
+
+            _repository.Verify(x => x.Insert(It.IsAny<Board>()), Times.Once);
+            _repository.Verify(x => x.AssignUserToBoard(It.IsAny<UserToBoard>()));
+            _listRepository.Verify(x => x.InsertDefaultList(It.IsAny<int>()));
+        }
     }
 }
