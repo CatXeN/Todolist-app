@@ -1,11 +1,13 @@
-﻿using TodolistAppModels.Informations;
+﻿using TodolistAppModels.Entities;
+using TodolistAppModels.Informations;
 
 namespace TodolistAppDomain.Identity
 {
     public interface IIdentityService
     {
-        Task CreateUser(UserInformation userInformation);
+        System.Threading.Tasks.Task CreateUser(UserInformation userInformation);
         Task<string> GetToken(string username, string password);
         Task<int> SerachUserByEmail(string email);
+        Task<User> GetUserData(int userId);
     }
 }

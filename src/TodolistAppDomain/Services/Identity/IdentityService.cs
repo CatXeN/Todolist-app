@@ -80,6 +80,16 @@ namespace TodolistAppDomain.Identity
             return tokenHandler.WriteToken(token);
         }
 
+        public async Task<User> GetUserData(int userId)
+        {
+            var user = await _context.Users.FirstOrDefaultAsync(x => x.Id == userId);
+
+            if (user == null)
+                throw new UserNotFoundException("User not found");
+
+            return user;
+        }
+
         public async Task<int> SerachUserByEmail(string email)
         {
             var user = await _context.Users.FirstOrDefaultAsync(x => x.Email == email);
