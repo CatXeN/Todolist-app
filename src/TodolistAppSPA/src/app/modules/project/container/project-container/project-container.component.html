@@ -6,7 +6,7 @@
             <app-action-presenter (messageEvent)="receiveMessage($event)" [board]="selectedBoard.id"></app-action-presenter>
             <app-to-do-list-presenter [message]="message" [board]="selectedBoard.id"></app-to-do-list-presenter> 
         </mat-tab>
-        <mat-tab label="Settings">
+        <mat-tab label="Settings" *ngIf="isOwner">
             <app-user-assigned [board]="selectedBoard.id"></app-user-assigned>
         </mat-tab>
     </mat-tab-group>

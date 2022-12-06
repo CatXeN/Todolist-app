@@ -80,5 +80,14 @@ namespace TodolistAppAPI.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        [Authorize()]
+        [HttpGet("isOwner/{id}")]
+        public async Task<IActionResult> IsOwner(int id)
+        {
+            var userId = _access.GetUserId();
+
+            return Ok(await _repository.IsOwner(id, userId));
+        }
     }
 }

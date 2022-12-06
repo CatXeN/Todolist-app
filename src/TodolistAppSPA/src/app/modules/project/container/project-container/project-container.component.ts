@@ -12,6 +12,7 @@ import { tap } from 'rxjs';
 export class ProjectContainerComponent {
   selectedBoard: Board;
   message:string = '';
+  isOwner: boolean = false;
 
   constructor(projectService: ProjectService, private route: ActivatedRoute) {
     this.selectedBoard = { id: 0, name: ''}
@@ -23,6 +24,10 @@ export class ProjectContainerComponent {
         projectService.getBoard(Number(id)).subscribe(result => {
           this.selectedBoard = result;
         })
+
+        projectService.isOwner(Number(id)).subscribe(result => {
+          this.isOwner = result;
+        });
       }
     })
   }

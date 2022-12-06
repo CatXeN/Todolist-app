@@ -2,7 +2,7 @@ import { ReOrderTasks } from './../../../shared/models/re-order-task.model';
 import { AddTask } from './../../../shared/models/add-task.model';
 import { TransferTask } from './../../../shared/models/transfer-task.model';
 import { List } from './../../../shared/models/list.model';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Board } from 'src/app/shared/models/board.model';
@@ -47,5 +47,20 @@ export class ProjectService {
 
   assignUserToBoard(data: AssignUserToBoard) {
     return this.httpClient.post(this.baseUrl + 'assignUserToBoard', data);
+  }
+
+  isOwner(boardId: number): Observable<boolean> {
+    const token: string = localStorage.getItem('token') || '';
+
+    if (token) {
+      var header = {
+        headers: new HttpHeaders()
+          .set('Authorization',  'bearer ' + token)
+      };
+  
+      return this.httpClient.get<boolean>(this.baseUrl + 'isOwner/' + boardId, header)
+    }
+
+    throw new Error('invalid token');
   }
 }

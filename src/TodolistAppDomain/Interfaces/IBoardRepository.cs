@@ -15,5 +15,6 @@ namespace TodolistAppDomain.Interfaces
         Task<Board> GetBoard(int id);
         System.Threading.Tasks.Task AssignUserToBoard(UserToBoard assign);
         Task<List<AssignedUserToBoard>> GetAssignedUserToBoard(int boardId);
+        Task<bool> IsOwner(int boardId, int userId);
     }
 }

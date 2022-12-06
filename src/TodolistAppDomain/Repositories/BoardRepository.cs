@@ -60,5 +60,16 @@ namespace TodolistAppDomain.Repositories
 
             return users;
         }
+
+        public async Task<bool> IsOwner(int boardId, int userId)
+        {
+            var isOwner = await _context.UsersToBoards.
+                FirstOrDefaultAsync(ub => ub.BoardId == boardId && ub.UserId == userId);
+
+            if (isOwner == null)
+                return false;
+
+            return isOwner.IsOwner;
+        }
     }
 }
