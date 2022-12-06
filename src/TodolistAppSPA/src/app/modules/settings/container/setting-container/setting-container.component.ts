@@ -1,3 +1,5 @@
+import { GetUserInfo } from './../../../../shared/models/get-user-info.model';
+import { SettingsService } from './../../settings.service';
 import { Component } from '@angular/core';
 
 @Component({
@@ -6,5 +8,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./setting-container.component.scss']
 })
 export class SettingContainerComponent {
+  userInfo!: GetUserInfo;
 
+  constructor(private settingService: SettingsService) {
+    this.settingService.userInfo().subscribe(user => {
+      this.userInfo = user;
+    })
+  }
 }

@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TodolistAppAPI.Authorization;
+using TodolistAppDomain.Helper;
 using TodolistAppDomain.Identity;
 using TodolistAppModels.Informations.Users;
 
@@ -33,6 +34,7 @@ namespace TodolistAppAPI.Controllers
                 {
                     Username = user.Username,
                     Email = user.Email,
+                    Role = EnumHelper.GetDescription(user.Role)
                 });
             }
             catch (Exception ex)
